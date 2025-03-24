@@ -12,6 +12,7 @@ class WeatherController extends Controller
         // Get the city from query parameter, default to 'New York' if not provided
         $city = $request->query('city', 'New York'); 
 
+
         // Ensure the API key and URL are correctly set in the .env file
         $apiKey = env('WEATHER_API_KEY');
         $apiUrl = env('WEATHER_API_URL');
@@ -31,7 +32,8 @@ class WeatherController extends Controller
             return response()->json(['error' => 'Weather data not available'], 500);
         }
 
+
         // Return weather data to the view
-        return view('weather', ['weather' => $response->json()]);
+        return view('weather', ['weather' => $response->json(),  'city' => $city]);
     }
 }
